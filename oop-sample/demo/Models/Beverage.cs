@@ -18,7 +18,13 @@ namespace oop_sample.demo.Models
             set
             {
                 // Bảo vệ dữ liệu: Không cho phép giá tiền âm
-                _price = value < 0 ? 0 : value;
+                if (value < 0)
+                {
+                    // Quăng lỗi ngay khi dữ liệu không hợp lệ
+                    throw new ArgumentException("Giá tiền không được phép âm!");
+                }
+                
+                _price = value;
             }
         }
 
